@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+    <title>Moov Money</title>
+    <style>
+        .btn-country-selection:focus {
+            background-color: darkviolet; 
+            color: white; 
+        }
+    </style>
+</head>
+<body>
+    <div class="header-div">
+        <center><p class="title">SEND MONEY</p></center>
+    </div>
+
+    <center> <img src="../../../assets/images/moov.svg" class="full-logo"> </center>
+
+    <p class="black-title"> To Other Networks</p>
+
+    <button class="button-selection" tabIndex="1" onclick="redirectTo('/views/TowardsInternational/OtherNetCountrySelection.html')"> SELECT COUNTRY</button>
+
+    <!-- Fixed footer -->
+    <div class="footer" style="font-size: 12px;">
+        <div class="footer-col"><p> &nbsp;&nbsp;&nbsp; </p></div>
+        <div class="footer-col"><p>SELECT</p></div>
+        <div class="footer-col"><p>BACK</p></div>
+    </div>
+
+    <script>
+        // FOR URL LINKING TO OTHER PAGE
+        function redirectTo(url) {
+            window.location.href = url;
+        }
+
+        // KEYPAD FUNCTION
+        function handleKeydown(e) {
+            // Prevent default behavior of arrow keys
+            e.preventDefault();
+
+            switch(e.key) {
+                case 'ArrowUp':
+                    nav(-1);
+                    break;
+                case 'ArrowDown':
+                    nav(1);
+                    break;
+                case 'ArrowRight':
+                    nav(1);
+                    break;
+                case 'ArrowLeft':
+                    nav(-1);
+                    break;
+            }
+        }
+
+        document.addEventListener('keydown', handleKeydown); 
+
+        function nav(move) {
+            const items = document.querySelectorAll('.btn-country-selection');
+            const currentIndex = Array.from(items).findIndex(item => item === document.activeElement);
+            const targetIndex = currentIndex + move;
+            const targetElement = items[targetIndex];
+            if (targetElement) {
+                targetElement.focus();
+            }
+        }
+    </script>
+</body>
+</html>
